@@ -2,20 +2,21 @@
 import sys
 import string
 
-def usage(scriptname):
-    msg = 'Usage: %s FILE' % scriptname
+
+def usage(script_name):
+    msg = 'Usage: %s FILE' % script_name
     sys.exit(msg)
 
-if len(sys.argv) != 2:
-    usage(sys.argv[0])
 
-def main(filename):
-    with open(filename) as f:
-        for cleartext in f:
-            ascii = map(ord, cleartext.rstrip('\n'))
+def main(file_name):
+    with open(file_name) as f:
+        for clear_text in f:
+            ascii = map(ord, clear_text.rstrip('\n'))
             cipher = [c - 1 for c in ascii]
-            ciphertext = map(chr, cipher)
-            print string.join(ciphertext, '')
+            cipher_text = map(chr, cipher)
+            print string.join(cipher_text, '')
 
 if __name__ == '__main__':
+    if len(sys.argv) != 2:
+        usage(sys.argv[0])
     main(sys.argv[1])
